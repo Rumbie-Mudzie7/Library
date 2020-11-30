@@ -8,6 +8,10 @@
   padding: 0;
 }
 
+body {
+  position: relative;
+}
+
 th {
   background: black;
   color: white;
@@ -18,16 +22,30 @@ td {
 }
 
 form {
-  display: none;
+  display: block;
+  position: absolute;
+  top: -100%;
+  left: 25%;
+  z-index: 1;
+  background-color: lightgray;;
+  width: 50%;
+  padding: 10px;
+  transition: 0.5s all ease-in-out;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+.close {
+  float: right;
+  font-size: 20px;
+}
+
+.close:hover {
+  cursor: pointer;
 }
 
 input {
   display: block;
+  width: 100%;
   padding: 10px;
   margin-bottom: 5px;
 }
-
-/* .remove-btn {
-  background-color: blue;
-  padding: 20px;
-} */
