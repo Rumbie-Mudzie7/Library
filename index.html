@@ -16,20 +16,20 @@
       <th>Author</th>
       <th>Pages</th>
       <th>Read Status</th>
-      <th>Change</th>
-      </tr>
+    </tr>
   </table>
+  <br><br>
+  <button id="newBook">New Book</button><br><br>
 
-  <button id="newBook">New Book</button>
-
-<form>
-  <label >New Book</label>
-  <input type="text" placeholder="Title" required="true">
-  <input type="text" name="author" placeholder="author">
-  <input type="number" name="pages" placeholder="pages">
-  <input type="text" name="read" placeholder="read">
-  <input type="submit" value="Create Book">
-</form>
+  <form method="POST" action="#">
+    <label >New Book</label>
+    <label class="close">&times;</label>
+    <input type="text" name="title" placeholder="Title">
+    <input type="text" name="author" placeholder="author">
+    <input type="number" name="pages" placeholder="pages">
+    <input type="text" name="read" placeholder="read">
+    <input type="submit" value="Create Book">
+  </form>
 
   <script src='script/main.js'></script>
 </body>
