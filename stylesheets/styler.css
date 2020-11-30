@@ -17,6 +17,16 @@ td {
   padding: 20px;
 }
 
+form {
+  display: none;
+}
+
+input {
+  display: block;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
 /* .remove-btn {
   background-color: blue;
   padding: 20px;

@@ -54,3 +54,9 @@ function displayBooks(library) {
 }
 
 displayBooks(rumbieLibrary);
+
+let newBook = document.getElementById('newBook');
+let myForm = document.querySelector('form')
+newBook.addEventListener('click', function() {
+myForm.style.display = 'block';
+}); 
