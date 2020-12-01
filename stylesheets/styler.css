@@ -26,6 +26,7 @@ th {
   background: black;
   color: white;
   border: 1px solid white;
+  padding: 10px 20px;
 }
 
 td {
@@ -45,6 +46,16 @@ td {
 
 .changeRead-btn {
   background-color: #18a2b8;
+}
+
+#newBook {
+  padding: 10px 20px;
+  font-size: 20px;
+  color: white;
+  font-weight: 700;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  background-color: #5cb85c;
 }
 
 form {
