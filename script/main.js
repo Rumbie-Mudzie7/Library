@@ -1,6 +1,4 @@
 const rumbieLibrary = [];
-let removeButtons;
-let changeButtons;
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -9,23 +7,15 @@ function Book(title, author, pages, read) {
   this.read = (read.toLowerCase() === 'yes') ? 'read' : 'not read yet';
 }
 
-Book.prototype.info = function () {
-  return (`${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`);
+Book.prototype = {
+  info() {
+    return (`${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`);
+  },
 };
 
 function addBookToLibrary(book) {
   rumbieLibrary.push(book);
 }
-
-const book1 = new Book("Roy's book", 'Ntaate', 1, 'YES');
-const book2 = new Book('Rumbie\'s book', 'Rumbidzayi', 500, 'No');
-const book3 = new Book('JavaScript is fun now', 'Holy Spirit help', 10, 'yes');
-const book4 = new Book('Ruby Book', 'Hansson', 456, 'NO');
-
-addBookToLibrary(book1);
-addBookToLibrary(book2);
-addBookToLibrary(book3);
-addBookToLibrary(book4);
 
 const table = document.querySelector('table');
 
@@ -44,7 +34,7 @@ function displayAddedBook(book) {
 
   const button1 = document.createElement('button');
   button1.setAttribute('class', 'remove-btn');
-  button1.addEventListener('click', function (e) {
+  button1.addEventListener('click', function deleteBook() {
     const td = this.parentElement;
     const row = td.parentElement;
     row.remove();
@@ -54,12 +44,12 @@ function displayAddedBook(book) {
 
   const button2 = document.createElement('button');
   button2.setAttribute('class', 'changeRead-btn');
-  button2.addEventListener('click', function () {
+  button2.addEventListener('click', function changeReadStatus() {
     const td = this.parentElement;
     const row = td.parentElement;
     const currentRead = row.childNodes[3].textContent;
     const index = rumbieLibrary.indexOf(book);
-    if (currentRead == 'read') {
+    if (currentRead === 'read') {
       row.childNodes[3].textContent = 'not read yet';
       rumbieLibrary[index].read = 'not read yet';
     } else {
@@ -125,6 +115,7 @@ function createNewBook() {
       case 'read':
         myread = myForm.elements[i].value;
         break;
+      default:
     }
   }
 
@@ -132,7 +123,8 @@ function createNewBook() {
 
   let confirm = true;
   for (let i = 0; i < rumbieLibrary.length; i += 1) {
-    if ((rumbieLibrary[i].title == newBook.title) && (rumbieLibrary[i].author == newBook.author)) {
+    if ((rumbieLibrary[i].title === newBook.title)
+        && (rumbieLibrary[i].author === newBook.author)) {
       confirm = false;
       break;
     }
