@@ -27,6 +27,7 @@ To get a local copy up and running follow these simple example steps.
 - To clone the repo to your local repository. Follow this steps
 - <code> git clone https://github.com/Rumbie-Mudzie7/Library.git</code>
 - <code> cd library</code>
+- Open `index.html` in your preferred browser.
 
 
 ## Author
