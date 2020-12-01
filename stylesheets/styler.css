@@ -36,7 +36,18 @@ td {
 .remove-btn,
 .changeRead-btn {
   padding: 2px 5px;
+  color: #fff;
 }
+
+.remove-btn {
+  background-color: #dd4046;
+}
+
+.changeRead-btn {
+  background-color: #18a2b8;
+}
+
+
 
 form {
   display: block;
