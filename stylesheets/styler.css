@@ -12,18 +12,29 @@ body {
   position: relative;
 }
 
+table {
+  border-collapse: collapse;
+  width: 50%;
+}
+
 th {
   background: black;
   color: white;
+  border: 1px solid white;
 }
 
 td {
   padding: 20px;
+  border:1px solid lightgray;
+}
+
+.remove-btn {
+  padding: 2px 5px;
 }
 
 form {
   display: block;
-  position: absolute;
+  position: fixed;
   top: -100%;
   left: 25%;
   z-index: 1;
