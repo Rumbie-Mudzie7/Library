@@ -1,5 +1,6 @@
 let rumbieLibrary = []
 let removeButtons; 
+let changeButtons;
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -30,13 +31,30 @@ let table = document.querySelector('table');
 
 function updateRemoveButtons() {
   removeButtons = document.querySelectorAll('.remove-btn');
+  changeButtons = document.querySelectorAll('.changeRead-btn');
 }
 
 function clickRemoveButtons() {
   for(let i = 0; i < removeButtons.length; i++) {
     removeButtons[i].addEventListener('click', function() {
-      let newRows = document.getElementsByClassName('table-book');
       rumbieLibrary.splice(i, 1);
+      displayBooks(rumbieLibrary);
+    });
+  }
+}
+
+function changeReadStatus() {
+  for(let i = 0; i < changeButtons.length; i ++)
+  {
+    changeButtons[i].addEventListener('click', function() {
+      let currentRead = rumbieLibrary[i].read
+      if (currentRead === 'read'){
+          rumbieLibrary[i].read = 'not read yet';
+      }
+      else
+      {
+        rumbieLibrary[i].read = 'read';
+      }
       displayBooks(rumbieLibrary);
     });
   }
@@ -53,34 +71,44 @@ function displayBooks(library) {
     let row = document.createElement("tr");
 
     row.setAttribute('class', 'table-book');
+    row.classList.add('Rumbie-happy');
     let tableData1 = document.createElement('td');
     let tableData2 = document.createElement('td');
     let tableData3 = document.createElement('td');
     let tableData4 = document.createElement('td');
     let tableData5 = document.createElement('td');
+    let tableData6 = document.createElement('td');
+
 
     let button1 = document.createElement('button');
     button1.setAttribute('class', 'remove-btn');
 
+    let button2 = document.createElement('button');
+    button2.setAttribute('class', 'changeRead-btn');
+
     tableData5.appendChild(button1);
+    tableData6.appendChild(button2);
         
     tableData1.textContent = book.title;
     tableData2.textContent = book.author;
     tableData3.textContent = book.pages;
     tableData4.textContent = book.read;
     button1.textContent = 'Delete';
+    button2.textContent = 'Change Status';
 
     row.appendChild(tableData1);
     row.appendChild(tableData2);
     row.appendChild(tableData3);
     row.appendChild(tableData4);
     row.appendChild(tableData5);
+    row.appendChild(tableData6);
 
     table.appendChild(row);
   });
 
     updateRemoveButtons();
     clickRemoveButtons();
+    changeReadStatus();
 }
 
 displayBooks(rumbieLibrary);
