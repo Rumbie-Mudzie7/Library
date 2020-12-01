@@ -30,14 +30,14 @@ let table = document.querySelector('table');
 
 function updateRemoveButtons() {
   removeButtons = document.querySelectorAll('.remove-btn');
-  console.log(removeButtons.length);
 }
 
 function clickRemoveButtons() {
   for(let i = 0; i < removeButtons.length; i++) {
     removeButtons[i].addEventListener('click', function() {
       let newRows = document.getElementsByClassName('table-book');
-      console.log(newRows.length);
+      rumbieLibrary.splice(i, 1);
+      displayBooks(rumbieLibrary);
     });
   }
 }
@@ -57,9 +57,12 @@ function displayBooks(library) {
     let tableData2 = document.createElement('td');
     let tableData3 = document.createElement('td');
     let tableData4 = document.createElement('td');
+    let tableData5 = document.createElement('td');
 
     let button1 = document.createElement('button');
     button1.setAttribute('class', 'remove-btn');
+
+    tableData5.appendChild(button1);
         
     tableData1.textContent = book.title;
     tableData2.textContent = book.author;
@@ -71,7 +74,7 @@ function displayBooks(library) {
     row.appendChild(tableData2);
     row.appendChild(tableData3);
     row.appendChild(tableData4);
-    row.appendChild(button1);
+    row.appendChild(tableData5);
 
     table.appendChild(row);
   });
