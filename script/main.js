@@ -29,85 +29,64 @@ addBookToLibrary(book4);
 
 const table = document.querySelector('table');
 
-function updateRemoveButtons() {
-  removeButtons = document.querySelectorAll('.remove-btn');
-  changeButtons = document.querySelectorAll('.changeRead-btn');
-}
+function displayAddedBook(book) {
+  const row = document.createElement('tr');
 
-function displayBooks(library) {
-  const rows = document.getElementsByClassName('table-book');
-  while (rows.length > 0) {
-    rows[0].remove();
-  }
-
-  library.forEach((book) => {
-    const row = document.createElement('tr');
-
-    row.setAttribute('class', 'table-book');
-    row.classList.add('Rumbie-happy');
-    const tableData1 = document.createElement('td');
-    const tableData2 = document.createElement('td');
-    const tableData3 = document.createElement('td');
-    const tableData4 = document.createElement('td');
-    const tableData5 = document.createElement('td');
-    const tableData6 = document.createElement('td');
+  row.setAttribute('class', 'table-book');
+  row.classList.add('Rumbie-happy');
+  const tableData1 = document.createElement('td');
+  const tableData2 = document.createElement('td');
+  const tableData3 = document.createElement('td');
+  const tableData4 = document.createElement('td');
+  const tableData5 = document.createElement('td');
+  const tableData6 = document.createElement('td');
 
 
-    const button1 = document.createElement('button');
-    button1.setAttribute('class', 'remove-btn');
-
-    const button2 = document.createElement('button');
-    button2.setAttribute('class', 'changeRead-btn');
-
-    tableData5.appendChild(button1);
-    tableData6.appendChild(button2);
-
-    tableData1.textContent = book.title;
-    tableData2.textContent = book.author;
-    tableData3.textContent = book.pages;
-    tableData4.textContent = book.read;
-    button1.textContent = 'Delete';
-    button2.textContent = 'Change Status';
-
-    row.appendChild(tableData1);
-    row.appendChild(tableData2);
-    row.appendChild(tableData3);
-    row.appendChild(tableData4);
-    row.appendChild(tableData5);
-    row.appendChild(tableData6);
-
-    table.appendChild(row);
+  const button1 = document.createElement('button');
+  button1.setAttribute('class', 'remove-btn');
+  button1.addEventListener('click', function (e) {
+    const td = this.parentElement;
+    const row = td.parentElement;
+    row.remove();
+    const index = rumbieLibrary.indexOf(book);
+    rumbieLibrary.splice(index, 1);
   });
 
-  updateRemoveButtons();
-  clickRemoveButtons();
-  changeReadStatus();
-}
+  const button2 = document.createElement('button');
+  button2.setAttribute('class', 'changeRead-btn');
+  button2.addEventListener('click', function () {
+    const td = this.parentElement;
+    const row = td.parentElement;
+    const currentRead = row.childNodes[3].textContent;
+    const index = rumbieLibrary.indexOf(book);
+    if (currentRead == 'read') {
+      row.childNodes[3].textContent = 'not read yet';
+      rumbieLibrary[index].read = 'not read yet';
+    } else {
+      row.childNodes[3].textContent = 'read';
+      rumbieLibrary[index].read = 'read';
+    }
+  });
 
-function clickRemoveButtons() {
-  for (let i = 0; i < removeButtons.length; i += 1) {
-    removeButtons[i].addEventListener('click', () => {
-      rumbieLibrary.splice(i, 1);
-      displayBooks(rumbieLibrary);
-    });
-  }
-}
+  tableData5.appendChild(button1);
+  tableData6.appendChild(button2);
 
-function changeReadStatus() {
-  for (let i = 0; i < changeButtons.length; i += 1) {
-    changeButtons[i].addEventListener('click', () => {
-      const currentRead = rumbieLibrary[i].read;
-      if (currentRead === 'read') {
-        rumbieLibrary[i].read = 'not read yet';
-      } else {
-        rumbieLibrary[i].read = 'read';
-      }
-      displayBooks(rumbieLibrary);
-    });
-  }
-}
+  tableData1.textContent = book.title;
+  tableData2.textContent = book.author;
+  tableData3.textContent = book.pages;
+  tableData4.textContent = book.read;
+  button1.textContent = 'Delete';
+  button2.textContent = 'Change Status';
 
-displayBooks(rumbieLibrary);
+  row.appendChild(tableData1);
+  row.appendChild(tableData2);
+  row.appendChild(tableData3);
+  row.appendChild(tableData4);
+  row.appendChild(tableData5);
+  row.appendChild(tableData6);
+
+  table.appendChild(row);
+}
 
 const newBook = document.getElementById('newBook');
 const myForm = document.querySelector('form');
@@ -161,6 +140,7 @@ function createNewBook() {
 
   if (confirm) {
     addBookToLibrary(newBook);
+    displayAddedBook(newBook);
   }
   myForm.reset();
 }
@@ -169,9 +149,6 @@ const submitButton = myForm.elements[myForm.length - 1];
 
 submitButton.addEventListener('click', (e) => {
   createNewBook();
-  displayBooks(rumbieLibrary);
-  // clickRemoveButtons();
-  // changeReadStatus();
   closeForm();
   e.preventDefault();
 });
