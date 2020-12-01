@@ -1,5 +1,5 @@
-let rumbieLibrary = []
-let removeButtons; 
+const rumbieLibrary = [];
+let removeButtons;
 let changeButtons;
 
 function Book(title, author, pages, read) {
@@ -9,86 +9,59 @@ function Book(title, author, pages, read) {
   this.read = (read.toLowerCase() === 'yes') ? 'read' : 'not read yet';
 }
 
-Book.prototype.info = function() {
+Book.prototype.info = function () {
   return (`${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`);
-}
+};
 
 function addBookToLibrary(book) {
   rumbieLibrary.push(book);
 }
 
-const book1 = new Book("Roy's book", "Ntaate", 1, "YES");
-const book2 = new Book('Rumbie\'s book', 'Rumbidzayi', 500, "No");
-const book3 = new Book("JavaScript is fun now", "Holy Spirit help", 10, "yes");
-const book4 = new Book("Ruby Book", "Hansson", 456, "NO");
+const book1 = new Book("Roy's book", 'Ntaate', 1, 'YES');
+const book2 = new Book('Rumbie\'s book', 'Rumbidzayi', 500, 'No');
+const book3 = new Book('JavaScript is fun now', 'Holy Spirit help', 10, 'yes');
+const book4 = new Book('Ruby Book', 'Hansson', 456, 'NO');
 
 addBookToLibrary(book1);
 addBookToLibrary(book2);
 addBookToLibrary(book3);
 addBookToLibrary(book4);
 
-let table = document.querySelector('table');
+const table = document.querySelector('table');
 
 function updateRemoveButtons() {
   removeButtons = document.querySelectorAll('.remove-btn');
   changeButtons = document.querySelectorAll('.changeRead-btn');
 }
 
-function clickRemoveButtons() {
-  for(let i = 0; i < removeButtons.length; i++) {
-    removeButtons[i].addEventListener('click', function() {
-      rumbieLibrary.splice(i, 1);
-      displayBooks(rumbieLibrary);
-    });
-  }
-}
-
-function changeReadStatus() {
-  for(let i = 0; i < changeButtons.length; i ++)
-  {
-    changeButtons[i].addEventListener('click', function() {
-      let currentRead = rumbieLibrary[i].read
-      if (currentRead === 'read'){
-          rumbieLibrary[i].read = 'not read yet';
-      }
-      else
-      {
-        rumbieLibrary[i].read = 'read';
-      }
-      displayBooks(rumbieLibrary);
-    });
-  }
-}
-
 function displayBooks(library) {
-
-  let rows = document.getElementsByClassName('table-book');
-  while (rows.length > 0){
+  const rows = document.getElementsByClassName('table-book');
+  while (rows.length > 0) {
     rows[0].remove();
   }
 
   library.forEach((book) => {
-    let row = document.createElement("tr");
+    const row = document.createElement('tr');
 
     row.setAttribute('class', 'table-book');
     row.classList.add('Rumbie-happy');
-    let tableData1 = document.createElement('td');
-    let tableData2 = document.createElement('td');
-    let tableData3 = document.createElement('td');
-    let tableData4 = document.createElement('td');
-    let tableData5 = document.createElement('td');
-    let tableData6 = document.createElement('td');
+    const tableData1 = document.createElement('td');
+    const tableData2 = document.createElement('td');
+    const tableData3 = document.createElement('td');
+    const tableData4 = document.createElement('td');
+    const tableData5 = document.createElement('td');
+    const tableData6 = document.createElement('td');
 
 
-    let button1 = document.createElement('button');
+    const button1 = document.createElement('button');
     button1.setAttribute('class', 'remove-btn');
 
-    let button2 = document.createElement('button');
+    const button2 = document.createElement('button');
     button2.setAttribute('class', 'changeRead-btn');
 
     tableData5.appendChild(button1);
     tableData6.appendChild(button2);
-        
+
     tableData1.textContent = book.title;
     tableData2.textContent = book.author;
     tableData3.textContent = book.pages;
@@ -106,40 +79,61 @@ function displayBooks(library) {
     table.appendChild(row);
   });
 
-    updateRemoveButtons();
-    clickRemoveButtons();
-    changeReadStatus();
+  updateRemoveButtons();
+  clickRemoveButtons();
+  changeReadStatus();
+}
+
+function clickRemoveButtons() {
+  for (let i = 0; i < removeButtons.length; i += 1) {
+    removeButtons[i].addEventListener('click', () => {
+      rumbieLibrary.splice(i, 1);
+      displayBooks(rumbieLibrary);
+    });
+  }
+}
+
+function changeReadStatus() {
+  for (let i = 0; i < changeButtons.length; i += 1) {
+    changeButtons[i].addEventListener('click', () => {
+      const currentRead = rumbieLibrary[i].read;
+      if (currentRead === 'read') {
+        rumbieLibrary[i].read = 'not read yet';
+      } else {
+        rumbieLibrary[i].read = 'read';
+      }
+      displayBooks(rumbieLibrary);
+    });
+  }
 }
 
 displayBooks(rumbieLibrary);
 
-let newBook = document.getElementById('newBook');
-let myForm = document.querySelector('form')
-let closeFormButton = document.querySelector('.close');
+const newBook = document.getElementById('newBook');
+const myForm = document.querySelector('form');
+const closeFormButton = document.querySelector('.close');
 
 
 function closeForm() {
   myForm.style.top = '-100%';
 }
 
-newBook.addEventListener('click', function() {
+newBook.addEventListener('click', () => {
   myForm.style.top = '0';
-}); 
+});
 
-closeFormButton.addEventListener('click', function(){
+closeFormButton.addEventListener('click', () => {
   closeForm();
 });
 
-function createNewBook() {  
-
+function createNewBook() {
   let mytitle = '';
   let myauthor = '';
   let mypages = '';
   let myread = '';
 
-  for(let i = 0; i < myForm.length; i ++)
-  {
-    switch(myForm.elements[i].name) {
+  for (let i = 0; i < myForm.length; i += 1) {
+    switch (myForm.elements[i].name) {
       case 'title':
         mytitle = myForm.elements[i].value;
         break;
@@ -148,36 +142,36 @@ function createNewBook() {
         break;
       case 'pages':
         mypages = myForm.elements[i].value;
-        break;      
+        break;
       case 'read':
         myread = myForm.elements[i].value;
-        break;       
+        break;
     }
   }
 
-  let newBook = new Book(mytitle, myauthor, mypages, myread);
+  const newBook = new Book(mytitle, myauthor, mypages, myread);
 
   let confirm = true;
-  for(let i = 0; i < rumbieLibrary.length; i ++){
+  for (let i = 0; i < rumbieLibrary.length; i += 1) {
     if ((rumbieLibrary[i].title == newBook.title) && (rumbieLibrary[i].author == newBook.author)) {
       confirm = false;
       break;
     }
   }
 
-  if(confirm){
+  if (confirm) {
     addBookToLibrary(newBook);
   }
   myForm.reset();
 }
 
-let submitButton = myForm.elements[myForm.length - 1];
+const submitButton = myForm.elements[myForm.length - 1];
 
-submitButton.addEventListener('click', function(e){
+submitButton.addEventListener('click', (e) => {
   createNewBook();
   displayBooks(rumbieLibrary);
+  // clickRemoveButtons();
+  // changeReadStatus();
   closeForm();
   e.preventDefault();
 });
-
-

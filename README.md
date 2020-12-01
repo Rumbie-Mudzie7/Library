@@ -3,9 +3,9 @@ The Library project demonstrates the Authors' understanding of JavaScript fundam
 
 1. Setting up the project with skeleton HTML5/CSS3 and JS files.
 
-2. Adding a function to the script that can take user’s input and store the new book objects into an array.
+2. Adding a function to the script that can take the user’s input and store the new book objects into an array.
 
-3. Adding buttons to allow users to create, delete a book and change the `read status` of a book.
+3. Adding buttons to allow users to create, delete a book, and change the `read status` of a book.
 
 
 
