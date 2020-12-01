@@ -1,4 +1,5 @@
-let rumbieLibrary = [];
+let rumbieLibrary = []
+let removeButtons; 
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -27,6 +28,20 @@ addBookToLibrary(book4);
 
 let table = document.querySelector('table');
 
+function updateRemoveButtons() {
+  removeButtons = document.querySelectorAll('.remove-btn');
+  console.log(removeButtons.length);
+}
+
+function clickRemoveButtons() {
+  for(let i = 0; i < removeButtons.length; i++) {
+    removeButtons[i].addEventListener('click', function() {
+      let newRows = document.getElementsByClassName('table-book');
+      console.log(newRows.length);
+    });
+  }
+}
+
 function displayBooks(library) {
 
   let rows = document.getElementsByClassName('table-book');
@@ -43,19 +58,26 @@ function displayBooks(library) {
     let tableData3 = document.createElement('td');
     let tableData4 = document.createElement('td');
 
+    let button1 = document.createElement('button');
+    button1.setAttribute('class', 'remove-btn');
+        
     tableData1.textContent = book.title;
     tableData2.textContent = book.author;
     tableData3.textContent = book.pages;
     tableData4.textContent = book.read;
+    button1.textContent = 'Delete';
 
     row.appendChild(tableData1);
     row.appendChild(tableData2);
     row.appendChild(tableData3);
     row.appendChild(tableData4);
+    row.appendChild(button1);
 
     table.appendChild(row);
   });
 
+    updateRemoveButtons();
+    clickRemoveButtons();
 }
 
 displayBooks(rumbieLibrary);
@@ -63,6 +85,7 @@ displayBooks(rumbieLibrary);
 let newBook = document.getElementById('newBook');
 let myForm = document.querySelector('form')
 let closeFormButton = document.querySelector('.close');
+
 
 function closeForm() {
   myForm.style.top = '-100%';
@@ -125,3 +148,5 @@ submitButton.addEventListener('click', function(e){
   closeForm();
   e.preventDefault();
 });
+
+
