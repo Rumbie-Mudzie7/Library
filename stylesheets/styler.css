@@ -1,0 +1,88 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  text-align: center;
+}
+
+h1 {
+  padding: 20px 0;
+}
+
+table {
+  border-collapse: collapse;
+  width: 80%;
+  margin: 0 auto;
+}
+
+th {
+  background: black;
+  color: white;
+  border: 1px solid white;
+  padding: 10px 20px;
+}
+
+td {
+  padding: 20px;
+  border: 1px solid lightgray;
+}
+
+.remove-btn,
+.changeRead-btn {
+  padding: 2px 5px;
+  color: #fff;
+}
+
+.remove-btn {
+  background-color: #dd4046;
+}
+
+.changeRead-btn {
+  background-color: #18a2b8;
+}
+
+#newBook {
+  padding: 10px 20px;
+  font-size: 20px;
+  color: white;
+  font-weight: 700;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  background-color: #5cb85c;
+}
+
+form {
+  display: block;
+  position: fixed;
+  top: -100%;
+  left: 25%;
+  z-index: 1;
+  background-color: lightgray;
+  width: 50%;
+  padding: 10px;
+  transition: 0.5s all ease-in-out;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+.close {
+  float: right;
+  font-size: 20px;
+}
+
+.close:hover {
+  cursor: pointer;
+}
+
+input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 5px;
+}

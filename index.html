@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rumbie's Library</title>
+  <link rel="icon" href="images/books.jpeg">
+  <link rel="stylesheet" href="stylesheets/styler.css">
+</head>
+<body>
+  <main>
+    <h1>Hello, This is Rumbie's Library.</h1>
+
+    <table>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Pages</th>
+        <th>Read Status</th>
+        <th>Remove Book</th>
+        <th>Change Status</th>
+      </tr>
+    </table>
+    <br><br>
+    <button id="newBook">New Book</button><br><br>
+
+    <form method="POST" action="#">
+      <label >New Book</label>
+      <label class="close">&times;</label>
+      <input type="text" name="title" placeholder="Title">
+      <input type="text" name="author" placeholder="author">
+      <input type="number" name="pages" placeholder="pages">
+      <input type="text" name="read" placeholder="read">
+      <input type="submit" value="Create Book">
+    </form>
+  </main>
+
+  <script src='script/main.js'></script>
+</body>
+</html>
