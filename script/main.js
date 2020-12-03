@@ -17,8 +17,8 @@ function addBookToLibrary(book) {
   rumbieLibrary.push(book);
 }
 
-function saveLibraryInStorage () {
-  localStorage.setItem("mylibrary", JSON.stringify(rumbieLibrary));
+function saveLibraryInStorage() {
+  localStorage.setItem('mylibrary', JSON.stringify(rumbieLibrary));
 }
 
 const table = document.querySelector('table');
@@ -144,8 +144,8 @@ function createNewBook() {
   myForm.reset();
 }
 
-if (localStorage.getItem("mylibrary")) {
-  let library = JSON.parse(localStorage.getItem("mylibrary"));
+if (localStorage.getItem('mylibrary')) {
+  const library = JSON.parse(localStorage.getItem('mylibrary'));
   for (let i = 0; i < library.length; i += 1) {
     rumbieLibrary.push(library[i]);
     displayAddedBook(library[i]);
