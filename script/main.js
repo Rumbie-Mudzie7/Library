@@ -17,6 +17,10 @@ function addBookToLibrary(book) {
   rumbieLibrary.push(book);
 }
 
+function saveLibraryInStorage () {
+  localStorage.setItem("mylibrary", JSON.stringify(rumbieLibrary));
+}
+
 const table = document.querySelector('table');
 
 function displayAddedBook(book) {
@@ -40,6 +44,7 @@ function displayAddedBook(book) {
     row.remove();
     const index = rumbieLibrary.indexOf(book);
     rumbieLibrary.splice(index, 1);
+    saveLibraryInStorage();
   });
 
   const button2 = document.createElement('button');
@@ -56,6 +61,7 @@ function displayAddedBook(book) {
       row.childNodes[3].textContent = 'read';
       rumbieLibrary[index].read = 'read';
     }
+    saveLibraryInStorage();
   });
 
   tableData5.appendChild(button1);
@@ -133,8 +139,17 @@ function createNewBook() {
   if (confirm) {
     addBookToLibrary(newBook);
     displayAddedBook(newBook);
+    saveLibraryInStorage();
   }
   myForm.reset();
+}
+
+if (localStorage.getItem("mylibrary")) {
+  let library = JSON.parse(localStorage.getItem("mylibrary"));
+  for (let i = 0; i < library.length; i += 1) {
+    rumbieLibrary.push(library[i]);
+    displayAddedBook(library[i]);
+  }
 }
 
 const submitButton = myForm.elements[myForm.length - 1];
