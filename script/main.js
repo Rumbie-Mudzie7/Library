@@ -152,9 +152,7 @@ if (localStorage.getItem('mylibrary')) {
   }
 }
 
-const submitButton = myForm.elements[myForm.length - 1];
-
-submitButton.addEventListener('click', (e) => {
+myForm.addEventListener('submit', (e) => {
   createNewBook();
   closeForm();
   e.preventDefault();
